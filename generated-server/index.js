@@ -43,7 +43,7 @@ db.connect(function (err, _db) {
 
 initialize(app, config).then(() => {
     http.createServer(app).listen(serverPort, () => {
-    console.log("\nApp running at http://localhost:" + serverPort);
+    console.log("\nContacts App running at http://localhost:" + serverPort);
     console.log("________________________________________________________________");
     if (config.middleware.swagger?.disable !== false) {
         console.log('API docs (Swagger UI) available on http://localhost:' + serverPort + '/docs');

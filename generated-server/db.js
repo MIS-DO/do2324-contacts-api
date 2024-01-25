@@ -5,7 +5,7 @@ var assert = require('assert');
 var path = require('path');
 
 // Connection URL
-const url = 'mongodb://172.17.0.1:27017';
+const url = 'mongodb://mongodb:27017';
 
 // Database Name
 const dbName = 'contacts';
