@@ -3,9 +3,12 @@
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
 var path = require('path');
+const logger = require('./logger');
 
 // Connection URL
-const url = 'mongodb://mongodb:27017';
+const host = process.env.DBHOST || "localhost";
+const port = process.env.DBPORT || "27017";
+const url = 'mongodb://' + host + ':' + port;
 
 // Database Name
 const dbName = 'contacts';
@@ -18,12 +21,12 @@ var _db;
 //Creates the connection to the database
 module.exports.connect = function connect(cb) {
     if (_db) {
-        console.warn("Trying to create the DB connection again!");
+        logger.warn("Trying to create the DB connection again!");
         return cb(null, _db);
     }
     client.connect(function (err) {
         if (err) {
-            console.error("Error connecting to DB!", err);
+            logger.error("Error connecting to DB!", err);
             process.exit(1);
         }
         _db = client.db(dbName).collection(dbName);
